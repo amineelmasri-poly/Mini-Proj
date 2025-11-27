@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Café Local - Accueil</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/logo.png" alt="Logo Le Café Local" height="40" class="d-inline-block align-text-top">
+                    Le Café Local
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="menu.html">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Bannière principale avec carousel -->
+    <section id="hero" class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/images/cafe-slide1.jpg" class="d-block w-100" alt="Intérieur du café">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class="animate-text">Venez savourer un moment de tranquillité</h2>
+                        <p class="animate-text-delay">Découvrez nos délicieux cafés et pâtisseries maison</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/cafe-slide2.jpg" class="d-block w-100" alt="Nos spécialités">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class="animate-text">Des produits frais et locaux</h2>
+                        <p class="animate-text-delay">Tous nos ingrédients sont soigneusement sélectionnés</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/images/cafe-slide3.jpg" class="d-block w-100" alt="Ambiance chaleureuse">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2 class="animate-text">Une ambiance chaleureuse</h2>
+                        <p class="animate-text-delay">L'endroit parfait pour travailler ou se détendre</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Présentation du Café -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="section-title mb-4">Notre Histoire</h2>
+                    <p class="lead">Bienvenue au Café Local, un lieu chaleureux où se retrouver, travailler ou simplement se détendre.</p>
+                    <p>Fondé en 2010, notre café s'engage à offrir la meilleure expérience caféinée de la ville. Nous sélectionnons soigneusement nos grains de café auprès de producteurs responsables et préparons chaque boisson avec passion.</p>
+                    <p>Que vous soyez amateur de café ou simplement à la recherche d'un endroit accueillant, notre équipe sera ravie de vous accueillir.</p>
+                    <a href="menu.html" class="btn btn-primary mt-3 cta-button">Découvrez notre menu</a>
+                </div>
+                <div class="col-md-6">
+                    <img src="assets/images/cafe-interieur.jpg" alt="Intérieur du Café Local" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos valeurs -->
+    <section id="values" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center mb-5">Nos Valeurs</h2>
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="value-card p-4 rounded shadow-sm">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-seedling fa-2x"></i>
+                        </div>
+                        <h3>Produits Locaux</h3>
+                        <p>Nous travaillons avec des producteurs locaux pour vous offrir des ingrédients frais et de saison.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="value-card p-4 rounded shadow-sm">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-heart fa-2x"></i>
+                        </div>
+                        <h3>Service Amical</h3>
+                        <p>Notre équipe est formée pour vous offrir un service chaleureux et personnalisé.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="value-card p-4 rounded shadow-sm">
+                        <div class="value-icon mb-3">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                        <h3>Ambiance Conviviale</h3>
+                        <p>Notre espace est conçu pour créer une atmosphère accueillante et relaxante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>Le Café Local</h5>
+                    <p>123 Rue de la Paix<br>75000 Paris, France</p>
+                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
+                    <p><i class="fas fa-envelope"></i> contact@lecafelocal.fr</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Horaires d'ouverture</h5>
+                    <p>Lundi - Vendredi: 7h30 - 19h00</p>
+                    <p>Samedi - Dimanche: 8h00 - 20h00</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h5>Suivez-nous</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <div class="text-center">
+                <p>&copy; 2025 Le Café Local. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
