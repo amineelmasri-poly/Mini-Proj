@@ -5,7 +5,7 @@ const products = [
         name: "Espresso",
         category: "boissons-chaudes",
         price: 2.50,
-        image: "assets/images/espresso.jpg",
+        image: "assets/images/espresso.png",
         description: "Un espresso intense et aromatique",
         fullDescription: "Notre espresso est préparé avec des grains de café Arabica soigneusement torréfiés pour un goût riche et équilibré.",
         popularity: 5
@@ -15,7 +15,7 @@ const products = [
         name: "Cappuccino",
         category: "boissons-chaudes",
         price: 3.50,
-        image: "assets/images/cappuccino.jpg",
+        image: "assets/images/cappuccino.png",
         description: "Cappuccino crémeux avec de la mousse de lait",
         fullDescription: "Un mélange parfait d'espresso, de lait chaud et de mousse de lait onctueuse, saupoudré de cacao.",
         popularity: 4
@@ -25,7 +25,7 @@ const products = [
         name: "Croissant",
         category: "patisseries",
         price: 2.00,
-        image: "assets/images/croissant.jpg",
+        image: "assets/images/croissant.png",
         description: "Croissant beurré et feuilleté",
         fullDescription: "Nos croissants sont préparés quotidiennement avec du beurre AOP pour une texture légère et feuilletée.",
         popularity: 5
@@ -35,7 +35,7 @@ const products = [
         name: "Sandwich Jambon-Fromage",
         category: "sandwiches",
         price: 5.50,
-        image: "assets/images/sandwich.jpg",
+        image: "assets/images/sandwich.png",
         description: "Sandwich au jambon et fromage sur pain artisanal",
         fullDescription: "Un sandwich gourmet préparé avec du jambon de qualité supérieure, du fromage emmental et notre pain artisanal.",
         popularity: 4
@@ -45,21 +45,11 @@ const products = [
         name: "Thé Vert",
         category: "boissons-chaudes",
         price: 2.80,
-        image: "assets/images/the-vert.jpg",
+        image: "assets/images/the-vert.png",
         description: "Thé vert rafraîchissant et détoxifiant",
         fullDescription: "Notre thé vert est sélectionné pour ses propriétés antioxydantes et son goût délicat.",
         popularity: 3
     },
-    {
-        id: 6,
-        name: "Muffin Myrtille",
-        category: "patisseries",
-        price: 3.00,
-        image: "assets/images/muffin.jpg",
-        description: "Muffin moelleux aux myrtilles fraîches",
-        fullDescription: "Nos muffins sont préparés avec des myrtilles fraîches et une pâte moelleuse pour un plaisir gourmand.",
-        popularity: 4
-    }
 ];
 
 // Initialisation du site
