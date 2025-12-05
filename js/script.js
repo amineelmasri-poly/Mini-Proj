@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation fluide
     initSmoothScroll();
     
+    // Effet de scroll sur la navbar
+    initNavbarScroll();
+    
     // Initialisation de la page menu si on est sur cette page
     if (document.getElementById('products-container')) {
         initMenuPage();
@@ -70,6 +73,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialisation des effets de survol
     initHoverEffects();
 });
+
+// Effet de scroll sur la navbar
+function initNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
 
 // Navigation fluide
 function initSmoothScroll() {
@@ -319,7 +342,7 @@ function validateForm() {
 // Initialisation de la carte Google Maps
 function initMap() {
     // Coordonnées du café (exemple: Paris)
-    const cafeLocation = { lat: 48.8566, lng: 2.3522 };
+    const cafeLocation = { lat: 35.82628511092442, lng: 10.589582474757044 };
     
     // Créer la carte
     const map = new google.maps.Map(document.getElementById('map'), {

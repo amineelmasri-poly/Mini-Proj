@@ -14,11 +14,11 @@
 <body>
     <!-- Header -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo.png" alt="Logo Le Café Local" height="40" class="d-inline-block align-text-top">
-                    Le Café Local
+                    <img src="assets/images/logo.png" alt="Logo Le Café Local" class="d-inline-block align-text-top">
+                    <span>Le Café Local</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,16 +41,16 @@
     </header>
 
     <!-- Page Content -->
-    <main class="mt-5 pt-4">
+    <main style="padding-top: 2rem;">
         <div class="container">
-            <h1 class="text-center my-5">Contactez-nous</h1>
-            
+            <h1 class="section-title" style="margin-bottom: 3rem;">Contactez-nous</h1>
+
             <div class="row">
                 <!-- Formulaire de contact -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm">
+                <div class="col-lg-6 mb-4">
+                    <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title mb-4">Envoyez-nous un message</h3>
+                            <h3 class="card-title">Envoyez-nous un message</h3>
                             <form id="contact-form">
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nom</label>
@@ -79,26 +79,26 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Informations de contact et carte -->
-                <div class="col-md-6 mb-4">
-                    <div class="card shadow-sm mb-4">
+                <div class="col-lg-6 mb-4">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            <h3 class="card-title mb-4">Nos coordonnées</h3>
-                            <p><i class="fas fa-map-marker-alt me-2"></i> 123 Rue de la Paix, 75000 Paris, France</p>
-                            <p><i class="fas fa-phone me-2"></i> +33 1 23 45 67 89</p>
-                            <p><i class="fas fa-envelope me-2"></i> contact@lecafelocal.fr</p>
-                            
+                            <h3 class="card-title">Nos coordonnées</h3>
+                            <p><i class="fas fa-map-marker-alt me-2"></i> 5555555 sahloul</p>
+                            <p><i class="fas fa-phone me-2"></i> +21655555555</p>
+                            <p><i class="fas fa-envelope me-2"></i> contact@lecafelocal.tn</p>
+
                             <h5 class="mt-4">Horaires d'ouverture</h5>
                             <p>Lundi - Vendredi: 7h30 - 19h00</p>
                             <p>Samedi - Dimanche: 8h00 - 20h00</p>
                         </div>
                     </div>
-                    
+
                     <!-- Carte -->
-                    <div class="card shadow-sm">
+                    <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title mb-4">Notre emplacement</h3>
+                            <h3 class="card-title">Notre emplacement</h3>
                             <div id="map" class="map-container">
                                 <!-- La carte sera intégrée via JavaScript -->
                                 <div class="d-flex justify-content-center align-items-center h-100">
@@ -113,14 +113,14 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light py-4 mt-5">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <h5>Le Café Local</h5>
-                    <p>123 Rue de la Paix<br>75000 Paris, France</p>
-                    <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
-                    <p><i class="fas fa-envelope"></i> contact@lecafelocal.fr</p>
+                    <p>5555555 sahloul<br>Tunisie</p>
+                    <p><i class="fas fa-phone"></i> +21655555555</p>
+                    <p><i class="fas fa-envelope"></i> contact@lecafelocal.tn</p>
                 </div>
                 <div class="col-md-4 mb-3">
                     <h5>Horaires d'ouverture</h5>
@@ -130,9 +130,9 @@
                 <div class="col-md-4 mb-3">
                     <h5>Suivez-nous</h5>
                     <div class="social-links">
-                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light me-3" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-3" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Custom JS -->
     <script src="js/script.js"></script>
     <!-- Google Maps API -->
