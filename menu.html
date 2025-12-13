@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -20,7 +24,8 @@
                     <img src="assets/images/logo.png" alt="Logo Le Café Local" class="d-inline-block align-text-top">
                     <span>Le Café Local</span>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -49,20 +54,27 @@
             <div class="row mb-4">
                 <div class="col-lg-8 mb-3 mb-lg-0">
                     <div class="btn-group" role="group" aria-label="Filtrer par catégorie">
-                        <button type="button" class="btn btn-outline-primary filter-btn active" data-filter="all">Tous</button>
-                        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="boissons-chaudes">Boissons Chaudes</button>
-                        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="patisseries">Pâtisseries</button>
-                        <button type="button" class="btn btn-outline-primary filter-btn" data-filter="sandwiches">Sandwiches</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn active"
+                            data-filter="all">Tous</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn"
+                            data-filter="boissons-chaudes">Boissons Chaudes</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn"
+                            data-filter="patisseries">Pâtisseries</button>
+                        <button type="button" class="btn btn-outline-primary filter-btn"
+                            data-filter="sandwiches">Sandwiches</button>
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end">
                     <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             Trier par
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdown">
-                            <li><a class="dropdown-item sort-option" href="#" data-sort="price-asc">Prix croissant</a></li>
-                            <li><a class="dropdown-item sort-option" href="#" data-sort="price-desc">Prix décroissant</a></li>
+                            <li><a class="dropdown-item sort-option" href="#" data-sort="price-asc">Prix croissant</a>
+                            </li>
+                            <li><a class="dropdown-item sort-option" href="#" data-sort="price-desc">Prix
+                                    décroissant</a></li>
                             <li><a class="dropdown-item sort-option" href="#" data-sort="popularity">Popularité</a></li>
                         </ul>
                     </div>
@@ -75,6 +87,96 @@
             </div>
         </div>
     </main>
+
+    <!-- Section Réservation de Groupe -->
+    <section id="reservation" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Réservation de Groupe & Précommande</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3 class="card-title h4 mb-4">Vos Coordonnées</h3>
+                            <form id="reservation-form">
+                                <div class="mb-3">
+                                    <label for="res-name" class="form-label">Nom complet</label>
+                                    <input type="text" class="form-control" id="res-name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="res-phone" class="form-label">Téléphone</label>
+                                    <input type="tel" class="form-control" id="res-phone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="res-email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="res-email" required>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="res-date" class="form-label">Date</label>
+                                        <input type="date" class="form-control" id="res-date" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="res-time" class="form-label">Heure</label>
+                                        <input type="time" class="form-control" id="res-time" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="res-guests" class="form-label">Nombre de personnes (Min. 7)</label>
+                                    <input type="number" class="form-control" id="res-guests" min="7" value="7"
+                                        required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title h4 mb-4">Précommande (Optionnel)</h3>
+                            <p class="text-muted small mb-3">Sélectionnez vos articles pour gagner du temps.</p>
+
+                            <div id="preorder-list" class="flex-grow-1 overflow-auto mb-3" style="max-height: 400px;">
+                                <!-- Liste générée via JS -->
+                            </div>
+
+                            <div class="border-top pt-3 mt-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="h5 mb-0">Total Estimé:</span>
+                                    <span class="h4 text-primary mb-0" id="preorder-total">0.00 €</span>
+                                </div>
+                                <button type="button" class="btn btn-primary w-100" id="btn-generate-receipt">
+                                    <i class="fas fa-file-invoice me-2"></i> Réserver et Générer le Reçu
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Reçu -->
+    <div class="modal fade" id="receiptModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title"><i class="fas fa-receipt me-2"></i> Votre Reçu de Réservation</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="receipt-content">
+                    <!-- Contenu généré via JS -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary" onclick="window.print()">
+                        <i class="fas fa-print me-2"></i> Imprimer / Sauvegarder
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -110,8 +212,11 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Custom JS -->
     <script src="js/script.js"></script>
 </body>
+
 </html>

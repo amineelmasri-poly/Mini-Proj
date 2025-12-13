@@ -40,7 +40,12 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 700;
     line-height: 1.3;
@@ -709,6 +714,7 @@ footer .text-center p {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -732,7 +738,7 @@ footer .text-center p {
     .carousel-caption h2 {
         font-size: 2.5rem;
     }
-    
+
     .section-title {
         font-size: 2.25rem;
     }
@@ -743,59 +749,249 @@ footer .text-center p {
     body {
         padding-top: 70px;
     }
-    
+
     .hero-section {
         margin-top: -70px;
     }
-    
+
     .carousel-item {
         height: 70vh;
         min-height: 500px;
     }
-    
+
     .carousel-caption {
         padding: 2rem 1.5rem;
         bottom: 25%;
     }
-    
+
     .carousel-caption h2 {
         font-size: 2rem;
     }
-    
+
     .carousel-caption p {
         font-size: 1.1rem;
     }
-    
+
     .carousel-control-prev,
     .carousel-control-next {
         width: 50px;
         height: 50px;
     }
-    
+
     .carousel-control-prev {
         left: 15px;
     }
-    
+
     .carousel-control-next {
         right: 15px;
     }
-    
+
     section {
         padding: 4rem 0;
     }
-    
+
     .section-title {
         font-size: 2rem;
         margin-bottom: 2.5rem;
     }
-    
+
     #about .row {
         gap: 2rem;
     }
-    
+
     .value-card {
         padding: 2rem 1.5rem;
         margin-bottom: 1.5rem;
+    }
+}
+
+/* ============================================
+   RESERVATION & RECEIPT
+   ============================================ */
+
+/* Preorder List Item */
+.preorder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: var(--transition);
+}
+
+.preorder-item:hover {
+    background-color: #f9f9f9;
+}
+
+.preorder-item:last-child {
+    border-bottom: none;
+}
+
+.preorder-details {
+    flex-grow: 1;
+}
+
+.preorder-name {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0;
+}
+
+.preorder-price {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.preorder-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-quantity {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.quantity-display {
+    font-weight: 700;
+    width: 24px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+/* Receipt Styling */
+.receipt {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1rem;
+    background: #fff;
+    border: 1px dashed #ccc;
+    position: relative;
+}
+
+.receipt::before,
+.receipt::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-image: radial-gradient(circle, #f8f9fa 50%, transparent 51%);
+    background-size: 10px 10px;
+}
+
+.receipt::before {
+    top: -5px;
+}
+
+.receipt::after {
+    bottom: -5px;
+}
+
+.receipt-header {
+    text-align: center;
+    border-bottom: 2px dashed #000;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.receipt-logo {
+    max-width: 80px;
+    margin-bottom: 0.5rem;
+    filter: grayscale(100%);
+}
+
+.receipt-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.receipt-info {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.receipt-section {
+    margin-bottom: 1rem;
+}
+
+.receipt-label {
+    font-weight: 700;
+    border-bottom: 1px solid #000;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.receipt-total {
+    border-top: 2px dashed #000;
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #receiptModal .modal-content,
+    #receiptModal .modal-content * {
+        visibility: visible;
+    }
+
+    #receiptModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    #receiptModal .modal-header,
+    #receiptModal .modal-footer {
+        display: none !important;
+    }
+
+    #receiptModal .modal-body {
+        padding: 0;
+    }
+
+    .receipt {
+        border: none;
+        padding: 0;
+    }
+
+    .receipt::before,
+    .receipt::after {
+        display: none;
     }
 }
 
@@ -804,123 +1000,123 @@ footer .text-center p {
     body {
         padding-top: 65px;
     }
-    
+
     .hero-section {
         margin-top: -65px;
     }
-    
+
     .navbar {
         padding: 0.75rem 0;
     }
-    
+
     .navbar-brand {
         font-size: 1.25rem;
     }
-    
+
     .navbar-brand img {
         height: 35px;
     }
-    
+
     .navbar-nav .nav-link {
         padding: 0.75rem 1rem !important;
         font-size: 0.95rem;
     }
-    
+
     .carousel-item {
         height: 60vh;
         min-height: 400px;
     }
-    
+
     .carousel-caption {
         padding: 1.5rem 1rem;
         bottom: 20%;
         max-width: 90%;
     }
-    
+
     .carousel-caption h2 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
     }
-    
+
     .carousel-caption p {
         font-size: 1rem;
     }
-    
+
     .carousel-control-prev,
     .carousel-control-next {
         width: 40px;
         height: 40px;
     }
-    
+
     .carousel-control-prev {
         left: 10px;
     }
-    
+
     .carousel-control-next {
         right: 10px;
     }
-    
+
     .carousel-indicators {
         bottom: 20px;
     }
-    
+
     .carousel-indicators button {
         width: 10px;
         height: 10px;
     }
-    
+
     section {
         padding: 3rem 0;
     }
-    
+
     .section-title {
         font-size: 1.75rem;
         margin-bottom: 2rem;
     }
-    
+
     h1 {
         font-size: 2rem;
     }
-    
+
     h2 {
         font-size: 1.75rem;
     }
-    
+
     #about .lead {
         font-size: 1.1rem;
     }
-    
+
     #about p {
         font-size: 1rem;
     }
-    
+
     #about img {
         margin-top: 2rem;
     }
-    
+
     .value-card {
         padding: 1.5rem 1.25rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .value-icon {
         font-size: 2.5rem;
     }
-    
+
     .value-card h3 {
         font-size: 1.25rem;
     }
-    
+
     .cta-button {
         padding: 0.875rem 2rem;
         font-size: 1rem;
         width: 100%;
     }
-    
+
     .product-card .card-img-top {
         height: 200px;
     }
-    
+
     .filter-btn {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
@@ -928,51 +1124,51 @@ footer .text-center p {
         display: inline-block;
         width: auto;
     }
-    
+
     .btn-group {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
     }
-    
+
     .btn-group .filter-btn {
         flex: 1 1 auto;
         min-width: calc(50% - 0.25rem);
     }
-    
+
     .card-body {
         padding: 1.5rem;
     }
-    
+
     .card-title {
         font-size: 1.5rem;
     }
-    
+
     .form-control {
         padding: 0.625rem 0.875rem;
     }
-    
+
     .map-container {
         height: 250px;
     }
-    
+
     footer {
         padding: 2.5rem 0 1.25rem;
     }
-    
+
     footer h5 {
         font-size: 1.1rem;
         margin-bottom: 1.25rem;
     }
-    
+
     footer p {
         font-size: 0.9rem;
     }
-    
+
     .social-links {
         gap: 0.75rem;
     }
-    
+
     .social-links a {
         width: 40px;
         height: 40px;
@@ -986,37 +1182,37 @@ footer .text-center p {
         height: 50vh;
         min-height: 350px;
     }
-    
+
     .carousel-caption {
         padding: 1.25rem 0.875rem;
         bottom: 15%;
     }
-    
+
     .carousel-caption h2 {
         font-size: 1.25rem;
     }
-    
+
     .carousel-caption p {
         font-size: 0.9rem;
     }
-    
+
     section {
         padding: 2.5rem 0;
     }
-    
+
     .section-title {
         font-size: 1.5rem;
     }
-    
+
     .btn-group .filter-btn {
         min-width: 100%;
     }
-    
+
     .dropdown {
         width: 100%;
         margin-top: 1rem;
     }
-    
+
     .dropdown-toggle {
         width: 100%;
     }
@@ -1024,6 +1220,7 @@ footer .text-center p {
 
 /* Print Styles */
 @media print {
+
     .navbar,
     .carousel-control-prev,
     .carousel-control-next,
@@ -1031,11 +1228,11 @@ footer .text-center p {
     footer {
         display: none;
     }
-    
+
     body {
         padding-top: 0;
     }
-    
+
     .hero-section {
         margin-top: 0;
     }
