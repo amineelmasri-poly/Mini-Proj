@@ -1,0 +1,310 @@
+/* ============================================
+   MENU PAGE STYLES
+   ============================================ */
+
+/* PRODUCT CARDS */
+.product-card {
+    border: none;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    height: 100%;
+    background: var(--white);
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-card .card-img-top {
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.product-card:hover .card-img-top {
+    transform: scale(1.1);
+}
+
+.product-card .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card .card-title {
+    color: var(--dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.product-card .card-text {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.product-price {
+    color: var(--primary-color);
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.product-card .btn {
+    width: 100%;
+    margin-top: auto;
+}
+
+/* FILTER BUTTONS */
+.filter-btn {
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    margin: 0.25rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+    border-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-btn:hover:not(.active) {
+    background: var(--light-bg);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* FORM ELEMENTS (Specific to Menu page inputs if any, usually shared but good to keep modular) */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.card-title {
+    color: var(--dark);
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--light-bg);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: var(--transition);
+    background-color: var(--white);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(107, 68, 35, 0.15);
+    background-color: var(--white);
+    outline: none;
+}
+
+/* RESERVATION & RECEIPT SECTIONS */
+
+/* Preorder List Item */
+.preorder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: var(--transition);
+}
+
+.preorder-item:hover {
+    background-color: #f9f9f9;
+}
+
+.preorder-item:last-child {
+    border-bottom: none;
+}
+
+.preorder-details {
+    flex-grow: 1;
+}
+
+.preorder-name {
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 0;
+}
+
+.preorder-price {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.preorder-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-quantity {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.quantity-display {
+    font-weight: 700;
+    width: 24px;
+    text-align: center;
+    color: var(--primary-color);
+}
+
+/* Receipt Styling */
+.receipt {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1rem;
+    background: #fff;
+    border: 1px dashed #ccc;
+    position: relative;
+}
+
+.receipt::before,
+.receipt::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-image: radial-gradient(circle, #f8f9fa 50%, transparent 51%);
+    background-size: 10px 10px;
+}
+
+.receipt::before {
+    top: -5px;
+}
+
+.receipt::after {
+    bottom: -5px;
+}
+
+.receipt-header {
+    text-align: center;
+    border-bottom: 2px dashed #000;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.receipt-logo {
+    max-width: 80px;
+    margin-bottom: 0.5rem;
+    filter: grayscale(100%);
+}
+
+.receipt-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.receipt-info {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.receipt-section {
+    margin-bottom: 1rem;
+}
+
+.receipt-label {
+    font-weight: 700;
+    border-bottom: 1px solid #000;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.receipt-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.receipt-total {
+    border-top: 2px dashed #000;
+    padding-top: 0.5rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.receipt-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #receiptModal .modal-content,
+    #receiptModal .modal-content * {
+        visibility: visible;
+    }
+
+    #receiptModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    #receiptModal .modal-header,
+    #receiptModal .modal-footer {
+        display: none !important;
+    }
+
+    #receiptModal .modal-body {
+        padding: 0;
+    }
+
+    .receipt {
+        border: none;
+        padding: 0;
+    }
+
+    .receipt::before,
+    .receipt::after {
+        display: none;
+    }
+}

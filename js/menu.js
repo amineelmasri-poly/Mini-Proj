@@ -1,3 +1,7 @@
+// ============================================
+// MENU PAGE LOGIC
+// ============================================
+
 // Données des produits pour la page menu
 const products = [
     {
@@ -52,76 +56,17 @@ const products = [
     },
 ];
 
-// Initialisation du site
 document.addEventListener('DOMContentLoaded', function () {
-    // Navigation fluide
-    initSmoothScroll();
-
-    // Effet de scroll sur la navbar
-    initNavbarScroll();
-
-    // Initialisation de la page menu si on est sur cette page
-    if (document.getElementById('products-container')) {
-        initMenuPage();
-    }
-
-    // Initialisation de la page contact si on est sur cette page
-    if (document.getElementById('contact-form')) {
-        initContactPage();
-    }
-
-    // Initialisation des effets de survol
-    initHoverEffects();
+    initMenuPage();
 });
-
-// Effet de scroll sur la navbar
-function initNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', function () {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-
-        lastScroll = currentScroll;
-    });
-}
-
-// Navigation fluide
-function initSmoothScroll() {
-    const navLinks = document.querySelectorAll('a.nav-link');
-
-    navLinks.forEach(link => {
-        link.addEventListener('click', function (e) {
-            // Si le lien pointe vers une ancre sur la même page
-            if (this.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
-}
 
 // Initialisation de la page menu
 function initMenuPage() {
     // Afficher tous les produits au chargement
     displayProducts(products);
+
+    // Initialiser la section de réservation
+    initReservationSection();
 
     // Gestion des filtres
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -151,6 +96,8 @@ function initMenuPage() {
 // Affichage des produits
 function displayProducts(productsToDisplay) {
     const container = document.getElementById('products-container');
+    if (!container) return;
+
     container.innerHTML = '';
 
     if (productsToDisplay.length === 0) {
@@ -280,208 +227,6 @@ function showProductDetails(product) {
     productModal.show();
 }
 
-// Initialisation de la page contact
-function initContactPage() {
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-
-    contactForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        if (validateForm()) {
-            // Simulation d'envoi du formulaire
-            formMessage.innerHTML = '<div class="alert alert-success">Votre message a été envoyé avec succès !</div>';
-            contactForm.reset();
-
-            // Effacer le message après 5 secondes
-            setTimeout(() => {
-                formMessage.innerHTML = '';
-            }, 5000);
-        }
-    });
-
-    // Initialisation de la carte Google Maps
-    initMap();
-}
-
-// Validation du formulaire de contact
-function validateForm() {
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-
-    let isValid = true;
-
-    // Réinitialiser les états de validation
-    name.classList.remove('is-invalid');
-    email.classList.remove('is-invalid');
-    message.classList.remove('is-invalid');
-
-    // Validation du nom
-    if (!name.value.trim()) {
-        name.classList.add('is-invalid');
-        isValid = false;
-    }
-
-    // Validation de l'email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim() || !emailRegex.test(email.value)) {
-        email.classList.add('is-invalid');
-        isValid = false;
-    }
-
-    // Validation du message
-    if (!message.value.trim()) {
-        message.classList.add('is-invalid');
-        isValid = false;
-    }
-
-    return isValid;
-}
-
-// Initialisation de la carte Google Maps
-function initMap() {
-    // Coordonnées du café (exemple: Paris)
-    const cafeLocation = { lat: 35.82628511092442, lng: 10.589582474757044 };
-
-    // Créer la carte
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
-        center: cafeLocation,
-        styles: [
-            {
-                "featureType": "all",
-                "elementType": "geometry.fill",
-                "stylers": [{ "weight": "2.00" }]
-            },
-            {
-                "featureType": "all",
-                "elementType": "geometry.stroke",
-                "stylers": [{ "color": "#9c9c9c" }]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.text",
-                "stylers": [{ "visibility": "on" }]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "all",
-                "stylers": [{ "color": "#f2f2f2" }]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "geometry.fill",
-                "stylers": [{ "color": "#ffffff" }]
-            },
-            {
-                "featureType": "landscape.man_made",
-                "elementType": "geometry.fill",
-                "stylers": [{ "color": "#ffffff" }]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "all",
-                "stylers": [{ "visibility": "off" }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "all",
-                "stylers": [{ "saturation": -100 }, { "lightness": 45 }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "geometry.fill",
-                "stylers": [{ "color": "#eeeeee" }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels.text.fill",
-                "stylers": [{ "color": "#7b7b7b" }]
-            },
-            {
-                "featureType": "road",
-                "elementType": "labels.text.stroke",
-                "stylers": [{ "color": "#ffffff" }]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "all",
-                "stylers": [{ "visibility": "simplified" }]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "labels.icon",
-                "stylers": [{ "visibility": "off" }]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "all",
-                "stylers": [{ "visibility": "off" }]
-            },
-            {
-                "featureType": "water",
-                "elementType": "all",
-                "stylers": [{ "color": "#46bcec" }, { "visibility": "on" }]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry.fill",
-                "stylers": [{ "color": "#c8d7d4" }]
-            },
-            {
-                "featureType": "water",
-                "elementType": "labels.text.fill",
-                "stylers": [{ "color": "#070707" }]
-            },
-            {
-                "featureType": "water",
-                "elementType": "labels.text.stroke",
-                "stylers": [{ "color": "#ffffff" }]
-            }
-        ]
-    });
-
-    // Ajouter un marqueur
-    new google.maps.Marker({
-        position: cafeLocation,
-        map: map,
-        title: 'Le Café Local'
-    });
-}
-
-// Initialisation des effets de survol
-function initHoverEffects() {
-    // Effet de survol sur les cartes de produit
-    document.addEventListener('mouseover', function (e) {
-        if (e.target.closest('.product-card')) {
-            const card = e.target.closest('.product-card');
-            card.style.transform = 'translateY(-5px)';
-            card.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.1)';
-        }
-    });
-
-    document.addEventListener('mouseout', function (e) {
-        if (e.target.closest('.product-card')) {
-            const card = e.target.closest('.product-card');
-            card.style.transform = 'translateY(0)';
-            card.style.boxShadow = '';
-        }
-    });
-
-    // Effet de survol sur le bouton CTA
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('mouseenter', function () {
-            this.style.transform = 'scale(1.05)';
-        });
-
-        ctaButton.addEventListener('mouseleave', function () {
-            this.style.transform = 'scale(1)';
-        });
-    }
-}
-
 // ============================================
 // LOGIQUE DE RÉSERVATION DE GROUPE
 // ============================================
@@ -502,13 +247,6 @@ function initReservationSection() {
     if (generateBtn) {
         generateBtn.addEventListener('click', generateReceipt);
     }
-}
-
-// Appeler l'initialisation si on est sur la page menu
-if (document.getElementById('reservation')) {
-    // On ajoute un écouteur au DOMContentLoaded existant ou on l'exécute directement
-    // Comme le script est chargé à la fin du body, on peut l'appeler direct si le DOM est prêt,
-    // mais par sécurité on l'ajoute à la fonction d'init globale modifyant initMenuPage
 }
 
 // Rendu de la liste de précommande
@@ -699,10 +437,3 @@ function generateReceipt() {
     const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
     receiptModal.show();
 }
-
-// Hook pour initialiser la section réservation depuis initMenuPage
-const originalInitMenuPage = initMenuPage;
-initMenuPage = function () {
-    originalInitMenuPage();
-    initReservationSection();
-};
