@@ -82,7 +82,7 @@
     color: var(--primary-color);
 }
 
-/* FORM ELEMENTS (Specific to Menu page inputs if any, usually shared but good to keep modular) */
+/* FORM ELEMENTS  */
 .card {
     border: none;
     border-radius: var(--border-radius);
