@@ -2,63 +2,34 @@
 // MENU PAGE LOGIC
 // ============================================
 
-// Données des produits pour la page menu
-const products = [
-    {
-        id: 1,
-        name: "Espresso",
-        category: "boissons-chaudes",
-        price: 2.50,
-        image: "assets/images/espresso.png",
-        description: "Un espresso intense et aromatique",
-        fullDescription: "Notre espresso est préparé avec des grains de café Arabica soigneusement torréfiés pour un goût riche et équilibré.",
-        popularity: 5
-    },
-    {
-        id: 2,
-        name: "Cappuccino",
-        category: "boissons-chaudes",
-        price: 3.50,
-        image: "assets/images/cappuccino.png",
-        description: "Cappuccino crémeux avec de la mousse de lait",
-        fullDescription: "Un mélange parfait d'espresso, de lait chaud et de mousse de lait onctueuse, saupoudré de cacao.",
-        popularity: 4
-    },
-    {
-        id: 3,
-        name: "Croissant",
-        category: "patisseries",
-        price: 2.00,
-        image: "assets/images/croissant.png",
-        description: "Croissant beurré et feuilleté",
-        fullDescription: "Nos croissants sont préparés quotidiennement avec du beurre AOP pour une texture légère et feuilletée.",
-        popularity: 5
-    },
-    {
-        id: 4,
-        name: "Sandwich Jambon-Fromage",
-        category: "sandwiches",
-        price: 5.50,
-        image: "assets/images/sandwich.png",
-        description: "Sandwich au jambon et fromage sur pain artisanal",
-        fullDescription: "Un sandwich gourmet préparé avec du jambon de qualité supérieure, du fromage emmental et notre pain artisanal.",
-        popularity: 4
-    },
-    {
-        id: 5,
-        name: "Thé Vert",
-        category: "boissons-chaudes",
-        price: 2.80,
-        image: "assets/images/the-vert.png",
-        description: "Thé vert rafraîchissant et détoxifiant",
-        fullDescription: "Notre thé vert est sélectionné pour ses propriétés antioxydantes et son goût délicat.",
-        popularity: 3
-    },
-];
+// Données des produits - chargées depuis la base de données
+let products = [];
 
 document.addEventListener('DOMContentLoaded', function () {
-    initMenuPage();
+    loadProducts();
 });
+
+// Load products from database
+function loadProducts() {
+    fetch('php/api/get_products.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                products = data.products;
+                initMenuPage();
+            } else {
+                console.error('Error loading products:', data.message);
+                // Fallback to empty array
+                products = [];
+                initMenuPage();
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            products = [];
+            initMenuPage();
+        });
+}
 
 // Initialisation de la page menu
 function initMenuPage() {
@@ -123,7 +94,7 @@ function createProductCard(product) {
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">${product.description}</p>
                 <div class="mt-auto">
-                    <p class="product-price">${product.price.toFixed(2)} €</p>
+                    <p class="product-price">${product.price.toFixed(2)} TND</p>
                     <button class="btn btn-outline-primary btn-sm view-details" data-id="${product.id}">Voir détails</button>
                 </div>
             </div>
@@ -191,7 +162,7 @@ function showProductDetails(product) {
                             </div>
                             <div class="col-md-6">
                                 <p class="lead">${product.fullDescription}</p>
-                                <p class="h4 text-primary">${product.price.toFixed(2)} €</p>
+                                <p class="h4 text-primary">${product.price.toFixed(2)} TND</p>
                             </div>
                         </div>
                     </div>
@@ -216,7 +187,7 @@ function showProductDetails(product) {
                 </div>
                 <div class="col-md-6">
                     <p class="lead">${product.fullDescription}</p>
-                    <p class="h4 text-primary">${product.price.toFixed(2)} €</p>
+                    <p class="h4 text-primary">${product.price.toFixed(2)} TND</p>
                 </div>
             </div>
         `;
@@ -278,7 +249,7 @@ function renderPreorderList() {
                 item.innerHTML = `
                     <div class="preorder-details">
                         <p class="preorder-name">${product.name}</p>
-                        <p class="preorder-price">${product.price.toFixed(2)} €</p>
+                        <p class="preorder-price">${product.price.toFixed(2)} TND</p>
                     </div>
                     <div class="preorder-controls">
                         <button type="button" class="btn btn-outline-secondary btn-quantity" onclick="updatePreorder(${product.id}, -1)">
@@ -336,7 +307,7 @@ function updatePreorderTotal() {
 
     const totalDisplay = document.getElementById('preorder-total');
     if (totalDisplay) {
-        totalDisplay.textContent = total.toFixed(2) + ' €';
+        totalDisplay.textContent = total.toFixed(2) + ' TND';
     }
 
     return total;
@@ -364,26 +335,67 @@ function generateReceipt() {
     const date = document.getElementById('res-date').value;
     const time = document.getElementById('res-time').value;
 
+    // 3. Send to PHP backend
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('phone', phone);
+    formData.append('email', email);
+    formData.append('date', date);
+    formData.append('time', time);
+    formData.append('guests', guests);
+    formData.append('preorders', JSON.stringify(preorders));
+
+    // Show loading
+    const generateBtn = document.getElementById('btn-generate-receipt');
+    const originalText = generateBtn.innerHTML;
+    generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Traitement...';
+    generateBtn.disabled = true;
+
+    fetch('php/reservation_handler.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        generateBtn.innerHTML = originalText;
+        generateBtn.disabled = false;
+
+        if (data.success) {
+            // Display receipt from server response
+            displayReceiptFromServer(data.receipt, data.reservationId);
+        } else {
+            alert('Erreur: ' + data.message);
+        }
+    })
+    .catch(error => {
+        generateBtn.innerHTML = originalText;
+        generateBtn.disabled = false;
+        alert('Erreur lors de la réservation. Veuillez réessayer.');
+        console.error('Error:', error);
+    });
+}
+
+// Display receipt from server data
+function displayReceiptFromServer(receiptData, reservationId) {
     // 3. Construction du reçu HTML
-    const totalPreorder = updatePreorderTotal();
+    const totalPreorder = receiptData.total;
     const receiptContent = document.getElementById('receipt-content');
 
     let preorderHtml = '';
     let hasPreorder = false;
 
     // Construire la liste des articles
-    for (const [productId, qty] of Object.entries(preorders)) {
-        if (qty > 0) {
-            hasPreorder = true;
-            const product = products.find(p => p.id == productId);
-            const lineTotal = product.price * qty;
+    if (receiptData.items && receiptData.items.length > 0) {
+        hasPreorder = true;
+        receiptData.items.forEach(item => {
+            const lineTotal = item.price * item.quantity;
             preorderHtml += `
                 <div class="receipt-row">
-                    <span>${qty}x ${product.name}</span>
-                    <span>${lineTotal.toFixed(2)} €</span>
+                    <span>${item.quantity}x ${item.name}</span>
+                    <span>${lineTotal.toFixed(2)} TND</span>
                 </div>
             `;
-        }
+        });
     }
 
     if (!hasPreorder) {
@@ -396,21 +408,21 @@ function generateReceipt() {
                 <img src="assets/images/logo.png" alt="Logo" class="receipt-logo">
                 <div class="receipt-title">Le Café Local</div>
                 <div class="receipt-info">CONFIRMATION DE RÉSERVATION</div>
+                <div class="receipt-info small">Numéro: #${reservationId}</div>
                 <div class="receipt-info small">Date d'émission: ${new Date().toLocaleDateString()}</div>
             </div>
 
             <div class="receipt-section">
                 <span class="receipt-label">CLIENT</span>
-                <div class="receipt-row"><strong>Nom:</strong> ${name}</div>
-                <div class="receipt-row"><strong>Tél:</strong> ${phone}</div>
-                <div class="receipt-row"><strong>Email:</strong> ${email}</div>
+                <div class="receipt-row"><strong>Nom:</strong> ${receiptData.name}</div>
+                <div class="receipt-row"><strong>Email:</strong> ${receiptData.email || 'N/A'}</div>
             </div>
 
             <div class="receipt-section">
                 <span class="receipt-label">RÉSERVATION</span>
-                <div class="receipt-row"><strong>Date:</strong> ${date}</div>
-                <div class="receipt-row"><strong>Heure:</strong> ${time}</div>
-                <div class="receipt-row"><strong>Invités:</strong> ${guests} personnes</div>
+                <div class="receipt-row"><strong>Date:</strong> ${new Date(receiptData.date).toLocaleDateString('fr-FR')}</div>
+                <div class="receipt-row"><strong>Heure:</strong> ${receiptData.time}</div>
+                <div class="receipt-row"><strong>Invités:</strong> ${receiptData.guests} personnes</div>
             </div>
 
             <div class="receipt-section">
@@ -420,13 +432,14 @@ function generateReceipt() {
                 <div class="receipt-total">
                     <div class="receipt-row">
                         <span>TOTAL ESTIMÉ</span>
-                        <span>${totalPreorder.toFixed(2)} €</span>
+                        <span>${totalPreorder.toFixed(2)} TND</span>
                     </div>
                 </div>
             </div>
 
             <div class="receipt-footer">
                 <p>Merci pour votre réservation !</p>
+                <p>Votre réservation est enregistrée dans la base de données.</p>
                 <p>Veuillez présenter ce reçu à votre arrivée.</p>
                 <p>Pour toute modification, contactez-nous au +216 55 555 555</p>
             </div>
@@ -436,4 +449,10 @@ function generateReceipt() {
     // 4. Afficher le modal
     const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
     receiptModal.show();
+    
+    // Reset form and preorders
+    document.getElementById('reservation-form').reset();
+    Object.keys(preorders).forEach(key => preorders[key] = 0);
+    updatePreorderTotal();
+    renderPreorderList();
 }

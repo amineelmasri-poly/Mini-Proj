@@ -18,14 +18,37 @@ function initContactPage() {
         e.preventDefault();
 
         if (validateForm()) {
-            // Simulation d'envoi du formulaire
-            formMessage.innerHTML = '<div class="alert alert-success">Votre message a été envoyé avec succès !</div>';
-            contactForm.reset();
+            // Collect form data
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('message', document.getElementById('message').value);
 
-            // Effacer le message après 5 secondes
-            setTimeout(() => {
-                formMessage.innerHTML = '';
-            }, 5000);
+            // Show loading state
+            formMessage.innerHTML = '<div class="alert alert-info"><i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...</div>';
+
+            // Send to PHP backend
+            fetch('php/contact_handler.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    formMessage.innerHTML = '<div class="alert alert-success"><i class="fas fa-check-circle me-2"></i>' + data.message + '</div>';
+                    contactForm.reset();
+                } else {
+                    formMessage.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>' + data.message + '</div>';
+                }
+
+                // Effacer le message après 5 secondes
+                setTimeout(() => {
+                    formMessage.innerHTML = '';
+                }, 5000);
+            })
+            .catch(error => {
+                formMessage.innerHTML = '<div class="alert alert-danger"><i class="fas fa-exclamation-circle me-2"></i>Erreur lors de l\'envoi. Veuillez réessayer.</div>';
+            });
         }
     });
 
