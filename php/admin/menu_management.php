@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $available = isset($_POST['available']) ? 1 : 0;
             
             // image 
-            $imagePath = $_POST['existing_image'] ?? 'assets/images/default.png';
+            $imagePath = $_POST['existing_image'] ?? 'assets/images/';
             
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $uploadDir = '../../assets/images/';

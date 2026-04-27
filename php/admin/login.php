@@ -122,11 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </button>
             </form>
             
-            <div class="text-center mt-4">
-                <small class="text-muted">
-                    <i class="fas fa-info-circle"></i> Identifiants par défaut: admin / admin123
-                </small>
-            </div>
         </div>
     </div>
 </body>

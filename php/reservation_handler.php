@@ -5,7 +5,6 @@ require_once 'config.php';
 header('Content-Type: application/json');
 ini_set('display_errors', 0);
 
-// Convert warnings/notices into exceptions to keep API responses predictable.
 set_error_handler(function ($severity, $message, $file, $line) {
     throw new ErrorException($message, 0, $severity, $file, $line);
 });
